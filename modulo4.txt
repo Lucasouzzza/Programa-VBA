@@ -1,0 +1,12 @@
+Sub Salvar_Como()
+'Salvar Como
+   Dim CaixaDialogo As FileDialog
+   Set CaixaDialogo = Application.FileDialog(msoFileDialogSaveAs)
+     With CaixaDialogo
+        .InitialFileName = "C:\"
+        .FilterIndex = 3
+        'Salva o arquivo como XLSB a partir do Office 2010
+        .Show
+        .Execute
+     End With
+End Sub

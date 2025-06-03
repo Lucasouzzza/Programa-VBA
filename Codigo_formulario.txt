@@ -1,0 +1,124 @@
+'criacao da tratativa de erro
+Public Function TratativaDeErro(arquivo As String)
+  If Len(Dir(arquivo)) > 0 Then
+  TratativaDeErro = True
+ Else
+   TratativaDeErro = False
+  End If
+
+End Function
+
+Private Sub Combo_tipocaptura_Change()
+
+End Sub
+
+Private Sub CommandButton1_Click()
+
+'comando para gravar dados sempre abaixo da ultima linha preenchida
+Linha = Sheets("Planilha TCC").Cells(Rows.Count, "A").End(xlUp).Offset(1, 0).Row
+
+'listagem dos campos do fomulario em relacao as colunas da planilha
+Planilha1.Cells(Linha, 1).Value = Me.Text_campanhas.Value
+Planilha1.Cells(Linha, 2).Value = Me.Text_numero.Value
+Planilha1.Cells(Linha, 3).Value = Me.Text_data.Value
+Planilha1.Cells(Linha, 4).Value = Me.Text_hora.Value
+Planilha1.Cells(Linha, 5).Value = Me.Combo_especie.Value
+Planilha1.Cells(Linha, 6).Value = Me.Text_ponto.Value
+Planilha1.Cells(Linha, 7).Value = Me.Combo_tipocaptura.Value
+Planilha1.Cells(Linha, 8).Value = Me.Combo_sexo.Value
+Planilha1.Cells(Linha, 9).Value = Me.Text_peso.Value
+Planilha1.Cells(Linha, 10).Value = Me.Text_ccc.Value
+Planilha1.Cells(Linha, 11).Value = Me.Text_lcc.Value
+Planilha1.Cells(Linha, 12).Value = Me.Text_smv.Value
+Planilha1.Cells(Linha, 13).Value = Me.Text_lrp.Value
+Planilha1.Cells(Linha, 14).Value = Me.Text_cc.Value
+          
+'carrega os modulos programados
+Módulo1.prcSalvarGuias
+Módulo3.ultima_linha_vazia
+
+'mensagem de comfirmacao na gravacao dos dados na plinilha
+MsgBox "DADOS GRAVADOS COM SUCESSO!!!"
+
+'comandos para limpar os campos do formulario
+Me.Text_campanhas.Value = Null
+Me.Text_numero.Value = Null
+Me.Text_data.Value = Null
+Me.Text_hora.Value = Null
+Me.Combo_especie.Value = Null
+Me.Text_ponto.Value = Null
+Me.Combo_tipocaptura.Value = Null
+Me.Combo_sexo.Value = Null
+Me.Text_peso.Value = Null
+Me.Text_ccc.Value = Null
+Me.Text_lcc.Value = Null
+Me.Text_smv.Value = Null
+Me.Text_lrp.Value = Null
+Me.Text_cc.Value = Null
+Me.foto.Picture = LoadPicture("")
+
+Unload Me
+
+End Sub
+
+Private Sub CommandButton2_Click()
+
+'carrega o modulo para envio da plinilha para o email
+Módulo2.EnviaEmail2
+
+MsgBox "PLANILHA ENVIADA COM SUCESSO!!!"
+
+End Sub
+
+Private Sub CommandButton3_Click()
+
+'programacao do botao sair
+Unload Me
+ThisWorkbook.Close savechanges:=True
+Application.Quit
+
+End Sub
+
+Private Sub CommandButton4_Click()
+
+'programacao do botao acessar o formulario
+formulario.Hide
+Application.Visible = True
+
+End Sub
+
+Private Sub CommandButton5_Click()
+
+Módulo4.Salvar_Como
+
+End Sub
+
+Private Sub CommandButton6_Click()
+
+MsgBox "Voce tem certeza?"
+
+Módulo5.Deletar
+
+End Sub
+
+Private Sub foto_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
+Private Sub Label16_Click()
+
+End Sub
+
+Private Sub Label17_Click()
+
+End Sub
+
+Private Sub Frame1_Click()
+
+End Sub
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+'evitar ofechamento do formulario ao pressionar botao cadastrar
+Cancel = True
+
+End Sub

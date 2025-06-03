@@ -1,0 +1,7 @@
+Sub ultima_linha_vazia()
+Dim Linha As String
+'Faz a contagem de linhas e vai para uma linha abaixo
+Linha = Sheets("Planilha TCC").Cells(Rows.Count, "A").End(xlUp).Offset(-1, 0).Row
+MsgBox (Linha)
+
+End Sub

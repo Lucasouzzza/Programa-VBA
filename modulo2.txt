@@ -1,0 +1,52 @@
+'Baseado no código disponibilizado em: http://www.a1vbcode.com/snippet-3691.asp
+Function EnviaEmail2()
+    Dim iMsg, iConf, Flds
+
+    'Seta as variáveis, lembrando que o objeto Microsoft CDO deverá estar habilitado em Ferramentas->Referências->Microsoft CDO for Windows 2000 Library
+    Set iMsg = CreateObject("CDO.Message")
+    Set iConf = CreateObject("CDO.Configuration")
+    Set Flds = iConf.Fields
+
+    'Configura o componente de envio de email
+    schema = "http://schemas.microsoft.com/cdo/configuration/"
+    Flds.Item(schema & "sendusing") = 2
+    'Configura o smtp
+    Flds.Item(schema & "smtpserver") = "smtp.gmail.com"
+    'Configura a porta de envio de email
+    Flds.Item(schema & "smtpserverport") = 465
+    Flds.Item(schema & "smtpauthenticate") = 1
+    'Configura o email do remetente
+    Flds.Item(schema & "sendusername") = "lucasouzzza@gmail.com"
+    'Configura a senha do email remetente
+    Flds.Item(schema & "sendpassword") = "l0o2o7c2ke3004"
+    Flds.Item(schema & "smtpusessl") = 1
+    Flds.Update
+
+    With iMsg
+        'Email do destinatário
+        .To = "lucasouzzza@gmail.com"
+        'Seu email
+        .From = "lucasouzzza@gmail.com"
+        'Título do email
+        .Subject = "Planilha TCC"
+        'Mensagem do e-mail, você pode enviar formatado em HTML
+        .HTMLBody = "Segue planilha de registro do TCC."
+        'Seu nome ou apelido
+        .Sender = "BiÓlogo"
+        'Nome da sua organização
+        .Organization = "lucas"
+        'email de responder para
+        .ReplyTo = "lucasouzzza@gmail.com"
+        'Anexo a ser enviado na mensagem
+        .AddAttachment ("C:\Users\lucas\Desktop\TCC\Planilha TCC.xlsb")
+        'Passa a configuração para o objeto CDO
+        Set .Configuration = iConf
+        'Envia o email
+        .Send
+    End With
+
+    'Limpa as variáveis
+    Set iMsg = Nothing
+    Set iConf = Nothing
+    Set Flds = Nothing
+End Function

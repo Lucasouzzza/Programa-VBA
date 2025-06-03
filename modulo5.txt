@@ -1,0 +1,19 @@
+Sub Deletar()
+    
+    Dim lLin As Long
+    
+    Application.ScreenUpdating = False
+    
+    'Altere o nome da planilha abaixo:
+    With Sheets("Planilha TCC")
+        For lLin = .Cells(.Rows.Count, "E").End(xlUp).Row To 2 Step -1
+            If .Cells(lLin, "E") = "Trachemys dorbigni" Then .Rows(lLin).Delete
+            If .Cells(lLin, "E") = "Trachemys scripta elegans" Then .Rows(lLin).Delete
+            If .Cells(lLin, "E") = "Phrynops hilarii" Then .Rows(lLin).Delete
+                      
+            'Desafoga os processos pendentes do Windows a cada 100 linhas iteradas:
+            If lLin Mod 100 = 0 Then DoEvents
+        Next lLin
+    End With
+    Application.ScreenUpdating = True
+End Sub

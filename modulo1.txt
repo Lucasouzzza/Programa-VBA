@@ -1,0 +1,11 @@
+Sub prcSalvarGuias()
+
+    'copia planinha especificada
+    Sheets(Array("Planilha TCC")).Copy
+    Application.DisplayAlerts = False
+    
+    'salva a copia na pasta especificada
+    ActiveWorkbook.SaveAs "C:\Users\lucas\Desktop\TCC\Planilha TCC", xlExcel12
+    ActiveWorkbook.Close
+    
+End Sub
